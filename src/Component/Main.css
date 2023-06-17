@@ -9,7 +9,15 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+@media (max-width: 767px) {
 
+  .main {
+
+    width: 300px;
+
+  }
+
+}
 .ques-num {
   font-size: 23px;
   font-weight: 500;
