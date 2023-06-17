@@ -10,12 +10,6 @@
   transform: translate(-50%, -50%);
 }
 
-@media (max-width: 767px) {
-  .main {
-    width: fit-content;
-  }
-}
-
 .ques-num {
   font-size: 23px;
   font-weight: 500;
