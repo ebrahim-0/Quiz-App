@@ -1,0 +1,12 @@
+.footer {
+  color: white;
+}
+
+.footer div {
+  padding: 20px;
+
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 0);
+}
