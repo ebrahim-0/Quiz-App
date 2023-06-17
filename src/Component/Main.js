@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
 import "./Main.css";
 
 function Main() {
   const [start, setStart] = useState(0);
-
   const [activeQues, setActiveQues] = useState(1);
-
   const [ques, setQues] = useState([]);
-
   const [result, setResult] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
-
   const [wrongAnswers, setWrongAnswers] = useState(0);
+  const [disabled, setDisabled] = useState(false);
 
   const choices = ques.length > 0 ? ques[activeQues - 1].choices : null;
   const correctAnswer =
@@ -26,12 +22,13 @@ function Main() {
 
   const handelActiveQues = () => {
     setActiveQues(activeQues + 1);
+    setDisabled(false);
     document.querySelectorAll(".choices").forEach((ele) => {
       ele.classList.remove("selected-answer");
     });
   };
 
-  const handlecorrectAnswer = (e) => {
+  const handleCorrectAnswer = (e) => {
     if (e.target.innerHTML === correctAnswer) {
       setResult(result + 5);
       setCorrectAnswers(correctAnswers + 1);
@@ -40,6 +37,16 @@ function Main() {
     }
   };
 
+  const handleSelectedAnswer = (e) => {
+    document.querySelectorAll(".choices").forEach((ele) => {
+      ele.classList.remove("selected-answer");
+    });
+    e.target.classList.add("selected-answer");
+  };
+
+  const hasAnswered = (e) => {
+    setDisabled(true);
+  };
   const handelFinishQuiz = () => {
     document.querySelector(".main").innerHTML = `
 
@@ -51,13 +58,6 @@ function Main() {
       <p style="font-size: 23px">Wrong Answer: <span style="color: #800080;">${wrongAnswers}</span></p>
     </div>
       `;
-  };
-
-  const handleSelectedAnswer = (e) => {
-    document.querySelectorAll(".choices").forEach((ele) => {
-      ele.classList.remove("selected-answer");
-    });
-    e.target.classList.add("selected-answer");
   };
 
   const startQuiz = () => {
@@ -75,7 +75,7 @@ function Main() {
             <span className="ques-num">{activeQues}</span>
             <span className="ques-nums">/ {ques.length}</span>
           </div>
-          <ul className="question">
+          <div className="question">
             {ques.length > 0 ? (
               <h2 className="title">{ques[activeQues - 1].question}</h2>
             ) : (
@@ -84,22 +84,24 @@ function Main() {
             {ques.length > 0 ? (
               choices.map((li, i) => {
                 return (
-                  <li
+                  <button
+                    disabled={disabled}
                     key={i}
                     onClick={(e) => {
                       handleSelectedAnswer(e);
-                      handlecorrectAnswer(e);
+                      handleCorrectAnswer(e);
+                      hasAnswered(e);
                     }}
                     className="choices"
                   >
                     {li}
-                  </li>
+                  </button>
                 );
               })
             ) : (
               <h1>No Data22</h1>
             )}
-          </ul>
+          </div>
 
           {activeQues < ques.length ? (
             <button onClick={handelActiveQues} className="button">
