@@ -23,7 +23,7 @@ function Main() {
   const handelActiveQues = () => {
     setActiveQues(activeQues + 1);
     setDisabled(false);
-    document.querySelectorAll(".choices").forEach((ele) => {
+    document.querySelectorAll(".choice").forEach((ele) => {
       ele.classList.remove("selected-answer");
     });
   };
@@ -38,7 +38,7 @@ function Main() {
   };
 
   const handleSelectedAnswer = (e) => {
-    document.querySelectorAll(".choices").forEach((ele) => {
+    document.querySelectorAll(".choice").forEach((ele) => {
       ele.classList.remove("selected-answer");
     });
     e.target.classList.add("selected-answer");
@@ -92,7 +92,7 @@ function Main() {
                       handleCorrectAnswer(e);
                       hasAnswered(e);
                     }}
-                    className="choices"
+                    className="choice"
                   >
                     {li}
                   </button>

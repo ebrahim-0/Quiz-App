@@ -10,13 +10,9 @@
   transform: translate(-50%, -50%);
 }
 @media (max-width: 767px) {
-
   .main {
-
     width: 350px;
-
   }
-
 }
 .ques-num {
   font-size: 23px;
@@ -38,12 +34,14 @@
   padding: 15px;
 }
 
-.main .question .choices {
+.main .question .choice {
   padding: 10px;
   margin: 10px;
   border-radius: 8px;
   cursor: pointer;
   border: 1px solid #808080;
+  width: 100%;
+  text-align: left;
 }
 
 .selected-answer {
